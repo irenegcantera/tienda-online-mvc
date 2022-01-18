@@ -1,0 +1,16 @@
+{
+    "name": "irene/tienda-online-mvc",
+    "description": "Tienda online MVC",
+    "autoload": {
+        "psr-4": {
+            "Irene\\TiendaOnlineMvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Irene",
+            "email": "irenegcantera@gmail.com"
+        }
+    ],
+    "require": {}
+}
