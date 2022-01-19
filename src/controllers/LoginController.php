@@ -2,6 +2,7 @@
 
 namespace Irene\TiendaOnlineMvc\controllers;
 
+use Irene\TiendaOnlineMvc\libs\Controller;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
 class LoginController extends Controller {
@@ -13,21 +14,24 @@ class LoginController extends Controller {
     }
 
     public function login(){
+        $this->login = new Login($this->get('usuario'), $this->get('password'));
         // recuperar usuarios
         $usuarios = Usuario::getUsuarios();
 
         $sesion = $this->login();
-        // si coincide algun usuario de usuarios y sesion CHECKUSUARIO($sesion)
-            // si usuario es administrador CHECKADMINITRADOR($sesion)
-                // si el usuario es activo CHECKSTATUS($sesion)
+        if(!$sesion){
+            // si coincide algun usuario de usuarios y sesion CHECKUSUARIO($sesion)
+                // si usuario es administrador CHECKADMINITRADOR($sesion)
+                    // si el usuario es activo CHECKSTATUS($sesion)
                     $this->render("index", null);
+                    // no
+                        $this->render("views/login/login", null);
                 // no
                     $this->render("views/login/login", null);
             // no
                 $this->render("views/login/login", null);
-        // no
-            $this->render("views/login/login", null);
-        
+        }
+    
     }
 
     // public function entrar(){

@@ -64,7 +64,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Login</title>
-    <link href="../../css/login.css" rel="stylesheet" type="text/css">
+    <link href=<?php Configuration::$PATH."css/login.css"?> rel="stylesheet" type="text/css">
 </head>
 
 <body>

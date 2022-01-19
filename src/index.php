@@ -8,6 +8,7 @@ use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\controllers\TiendaCrud;
 use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 
+// require 'views\menu.php';
 
 // SE CREARIA UN OBJETO LOGIN
  
