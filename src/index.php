@@ -12,27 +12,25 @@ use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 // SE CREARIA UN OBJETO LOGIN
  
 error_reporting(E_ALL);
+$controlLogin = new LoginController();
 
 if(isset($_REQUEST['sesion']) ){
     $sesion = $_REQUEST['sesion'];
-    $control = new LoginController();
     switch($sesion){
         case 'Enviar':
-            $control -> login();
+            $controlLogin -> login();
             break;
         case 'Registrar':
-            $control -> registrar();
+            $controlLogin -> registrar();
             break;
         case 'cerrar':
-            $control -> salir();
+            $controlLogin -> salir();
             break;
         default:
-            $control->inicio();
+            $controlLogin->inicio();
     }
     
-}
-    
-if (isset($_REQUEST['op'])) {
+}else if (isset($_REQUEST['op'])) {
     $op = $_REQUEST['op'];
     if(isset($_REQUEST['tipo'])){
         $tipo = $_REQUEST['tipo'];
@@ -77,6 +75,8 @@ if (isset($_REQUEST['op'])) {
         }
     }
     
+}else{
+    $controlLogin->inicio();
 }
 
 ?>

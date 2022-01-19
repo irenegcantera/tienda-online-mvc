@@ -17,14 +17,14 @@ class Login {
 
     public function login(){
         session_start();
-        $_SESSION[$usuario] = $password;
-        return $_SESSION[$usuario];
+        $_SESSION[$this->usuario] = $this->password;
+        return $_SESSION[$this->usuario];
     }
 
     public function logoff(){
         session_start();
-        session_unset('usuario');
-        session_destroy('usuario');
+        session_unset($this->usuario);
+        session_destroy($this->usuario);
     }
 
     public function __get($prop){
