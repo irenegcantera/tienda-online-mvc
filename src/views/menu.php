@@ -9,7 +9,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 <html>
 	<head>
 		<title>Menu Desplegable</title>
-		<link rel = "stylesheet" type = "text/css" href = <?=Configuration::$PATH."css/style.css"?>>
+		<link rel = "stylesheet" type = "text/css" href = "<?=Configuration::$PATH."css/style.css"?>">
 	</head>
 	<body>
 		<div id="header">

@@ -40,7 +40,7 @@ class ProductoCrud extends Controller {
     }
 
     public function inicio(){
-        $this->render('menu', null);
+        $this->render('views/menu', null);
     }
 
     public function actualizar(){

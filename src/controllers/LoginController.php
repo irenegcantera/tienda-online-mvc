@@ -2,58 +2,63 @@
 
 namespace Irene\TiendaOnlineMvc\controllers;
 
+use Irene\TiendaOnlineMvc\conf\ConfigurationStatus;
 use Irene\TiendaOnlineMvc\libs\Controller;
+use Irene\TiendaOnlineMvc\controller\UsuarioCrud;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
 class LoginController extends Controller {
 
-    private Login $login;
+    //private Usuario $user;
 
     public function __construct(){
         parent::__construct();
     }
 
     public function login(){
-        $this->login = new Login($this->get('usuario'), $this->get('password'));
-        // recuperar usuarios
-        $usuarios = Usuario::getUsuarios();
+        session_start();
+        $usuario = $this->get('usuario');
+        $password = $this->get('password');
 
-        $sesion = $this->login();
-        if(!$sesion){
-            // si coincide algun usuario de usuarios y sesion CHECKUSUARIO($sesion)
-                // si usuario es administrador CHECKADMINITRADOR($sesion)
-                    // si el usuario es activo CHECKSTATUS($sesion)
-                    $this->render("index", null);
-                    // no
-                        $this->render("views/login/login", null);
-                // no
-                    $this->render("views/login/login", null);
-            // no
-                $this->render("views/login/login", null);
+        if (empty($usuario) || empty($password)) {
+            $info = ["mensaje" => "Los campos son obligatorios."];
+        } else {
+            $estadoUsuario = Usuario::checkUser($usuario,$password);
+            if($estadoUsuario == ConfigurationStatus::ACTIVO){
+                $_SESSION['usuario'] = $usuario;
+                $rolUsuario = Usuario::checkUserAdmin($usuario,$password);
+                if($rolUsuario){
+                    UsuarioCrud::inicio();
+                }else{
+                    $tienda = new TiendaOnlineController;
+                    $tienda->showTienda();
+                    return;
+                }    
+            }else{
+                switch ($estadoUsuario) {
+                    case 0:
+                        $info = ["mensaje" => "El usuario está bloqueado, reestablece la contraseña."];
+                        break;
+                    case 2:
+                        $info = ["mensaje" => "La cuenta no está activada, revisa tu correo electrónico."];
+                        break;
+                    case -1:
+                        $info = ["mensaje" => "Usuario o contraseña no válidos!"];
+                        break;
+                }
+            }
         }
-    
+        $this->render("views/login/login", $info);
     }
-
-    // public function entrar(){
-    //     // recuperar los usuaerios
-    //     // instanciar un nuevo usuario con los datos del form
-    //     // comparar los usuarios con la instanciar
-    //     // true -> set de datos que faltan a la instancia
-    //                 // $this->render("index", null);
-    //     // false -> $this->render("views/login/login", null);
-    // }
-
-    // public function registrar(){
-    //     // render registrar.php
-    // }
 
     public function inicio(){
         $this->render("views/login/login", null);
     }
 
     public function salir(){
-        $this->login = new Login($this->get('usuario'),$this->get('password'));
-        $this->logoff();
+        session_start();
+        session_unset($_SESSION['usuario']);
+        session_destroy();
         $this->render("views/login/login", null);
     }
 

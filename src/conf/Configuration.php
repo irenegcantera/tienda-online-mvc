@@ -9,13 +9,8 @@ class Configuration {
     static public string $USER = "dwes";
     static public string $PASSWORD = "abc123.";
     static public string $CHARSET = "utf8mb4";
-    static public string $PATH ="http://localhost/tienda-online-mvc/src/";
-    static public $STATUS = array(
-        0 => "Pendiente",
-        1 => "Activo",
-        2 => "Bloqueado",
-        3 => "No existe"
-    );
+    static public string $PATH ="http://localhost/DWEServidor/tienda-online-mvc/src/";
+  
 }
 
 ?>

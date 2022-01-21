@@ -1,4 +1,8 @@
 <?php
+
+use Irene\TiendaOnlineMvc\views;
+
+// use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\models\Familia;
 
