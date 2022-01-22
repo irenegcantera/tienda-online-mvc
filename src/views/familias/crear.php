@@ -14,7 +14,7 @@ if (isset($this -> data)) {
 ?>
 
 
-<form name="formulario" action="<?php Configuration::$PATH.'views\familias\crear.php' ?>" method="POST" enctype="multipart/form-data">
+<form name="formulario" action="<?php Configuration::$PATH_LOCALHOST.'views\familias\crear.php' ?>" method="POST" enctype="multipart/form-data">
 <?php
 if($editar){
     echo "<h2>FAMILIA <i>'$codigo'</i> A EDITAR</h2><br>

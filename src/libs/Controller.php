@@ -11,7 +11,7 @@ class Controller{
         $this->view= new View();
     }
 
-    public function render(string $name, $data){
+    public function render($name, $data){
         $this->view->render($name, $data);
     }
 

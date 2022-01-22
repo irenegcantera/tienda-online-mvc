@@ -18,7 +18,7 @@ if (isset($this -> data)) {
 
 ?>
 
-<form name="formulario" action="<?php Configuration::$PATH.'views\usuarios\crear.php' ?>" method="POST" enctype="multipart/form-data">  
+<form name="formulario" action="<?php Configuration::$PATH_LOCALHOST.'views\usuarios\crear.php' ?>" method="POST" enctype="multipart/form-data">  
 
 <?php
 

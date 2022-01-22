@@ -45,7 +45,7 @@ class FamiliaCrud extends Controller {
     }
 
     public function inicio(){
-        $this->render('menu', null);
+        $this->render('views/menu', null);
     }
     
 }

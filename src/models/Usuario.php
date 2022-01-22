@@ -55,8 +55,18 @@ class Usuario extends Model {
     }
 
     // funcion verificar usuario datos
+    public static function checkUser($usuario, $password){
+        $query = self::query("SELECT status FROM usuario WHERE nombre='".$usuario."' AND password='".md5($password)."'");
+        $datos=$query->fetch();
+        return ($datos)?$datos['status']:-1;
+    }
 
     // funcion verificar si es administrador
+    public static function checkUserAdmin($usuario, $password){
+        $query = self::query("SELECT rol FROM usuario WHERE nombre='".$usuario."'AND password='".md5($password)."'");
+        $datos=$query->fetch();
+        return ($datos['rol'] == "Administrador")?true:false;
+    }
 
     // funcion verificar el estado del usuario
 
@@ -80,7 +90,6 @@ class Usuario extends Model {
         $datos->closeCursor();
         return $usuarios;
     }
-
 
     // public static function getUsuario(usuario, contraseña){
     //     $usuarios=[];
