@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require dirname(__DIR__).'/vendor/autoload.php';
 
 use Irene\TiendaOnlineMvc\controllers\LoginController;
@@ -7,7 +9,7 @@ use Irene\TiendaOnlineMvc\controllers\FamiliaCrud;
 use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\controllers\TiendaCrud;
 use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
- 
+
 error_reporting(E_ALL);
 $controlLogin = new LoginController();
 

@@ -14,7 +14,6 @@ class LoginController extends Controller {
     }
 
     public function login(){
-        session_start();
         $usuario = $this->get('usuario');
         $password = $this->get('password');
 
@@ -51,14 +50,17 @@ class LoginController extends Controller {
         $this->render("views/login/login", $info);
     }
 
-    public function inicio(){
+    public static function comprobarSesion(){
+        return (isset($_SESSION['usuario']))?true:false;
+    }
+
+    public static function salir(){
+        session_unset($_SESSION['usuario']);
+        session_destroy();
         $this->render("views/login/login", null);
     }
 
-    public function salir(){
-        session_start();
-        session_unset($_SESSION['usuario']);
-        session_destroy();
+    public function inicio(){
         $this->render("views/login/login", null);
     }
 

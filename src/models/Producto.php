@@ -118,6 +118,17 @@ class Producto extends Model {
       
         return $productos;
     }
+
+    // Obtener el producto del código pasado por parámetro
+    public static function getProducto($codigo){
+        $datos=self::query("SELECT * FROM producto WHERE codigo='".$codigo."'");
+        $dato = $datos->fetch();
+        if($dato){
+            return new Producto($dato['cod'],$dato['nombre'],$dato['nombre_corto'],$dato['descripcion'],$dato['foto'],$dato['PVP'],$dato['familia']);
+        }else{
+            return null;
+        }
+    }
   
     public function __get($prop){
         return $this->$prop;

@@ -5,9 +5,10 @@ namespace Irene\TiendaOnlineMvc\views;
 use Irene\TiendaOnlineMvc\conf\Configuration;
 
 ?>
-
+<!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<title>Menu Desplegable</title>
 		<link rel = "stylesheet" type = "text/css" href = "<?=Configuration::$PATH_LOCALHOST."css/style.css"?>">
 	</head>
