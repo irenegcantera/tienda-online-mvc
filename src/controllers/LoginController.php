@@ -4,12 +4,10 @@ namespace Irene\TiendaOnlineMvc\controllers;
 
 use Irene\TiendaOnlineMvc\conf\ConfigurationStatus;
 use Irene\TiendaOnlineMvc\libs\Controller;
-use Irene\TiendaOnlineMvc\controller\UsuarioCrud;
+use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
 class LoginController extends Controller {
-
-    //private Usuario $user;
 
     public function __construct(){
         parent::__construct();
@@ -24,11 +22,13 @@ class LoginController extends Controller {
             $info = ["mensaje" => "Los campos son obligatorios."];
         } else {
             $estadoUsuario = Usuario::checkUser($usuario,$password);
-            if($estadoUsuario == ConfigurationStatus::ACTIVO){
+            if($estadoUsuario == ConfigurationStatus::$ACTIVO){
                 $_SESSION['usuario'] = $usuario;
                 $rolUsuario = Usuario::checkUserAdmin($usuario,$password);
                 if($rolUsuario){
-                    UsuarioCrud::inicio();
+                    $user = new UsuarioCrud;
+                    $user->inicio();
+                    return;
                 }else{
                     $tienda = new TiendaOnlineController;
                     $tienda->showTienda();

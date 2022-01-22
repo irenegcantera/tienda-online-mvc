@@ -10,12 +10,12 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Login</title>
-    <link href=<?php Configuration::$PATH."css/login.css"?> rel="stylesheet" type="text/css">
+    <link href=<?php Configuration::$PATH_LOCALHOST."css/login.css"?> rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div id='login'>
-        <form action='<?php Configuration::$PATH.'index.php' ?>' method='POST'>
+        <form action='<?php Configuration::$PATH_LOCALHOST.'index.php' ?>' method='POST'>
             <fieldset>
                 <div>
                     <span class='error'><?php if(isset($this->info)) echo $this->info['mensaje']; ?></span>

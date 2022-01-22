@@ -55,15 +55,15 @@ class Usuario extends Model {
     }
 
     // funcion verificar usuario datos
-    function checkUser($usuario, $password){
-        $query = self::query("SELECT usuario FROM usuario WHERE usuario=".$usuario." AND password".$password);
+    public static function checkUser($usuario, $password){
+        $query = self::query("SELECT status FROM usuario WHERE nombre='".$usuario."' AND password='".md5($password)."'");
         $datos=$query->fetch();
         return ($datos)?$datos['status']:-1;
     }
 
     // funcion verificar si es administrador
-    function checkUserAdmin($usuario, $password){
-        $query = self::query("SELECT rol FROM usuario WHERE usuario=".$usuario."AND password".$password);
+    public static function checkUserAdmin($usuario, $password){
+        $query = self::query("SELECT rol FROM usuario WHERE nombre='".$usuario."'AND password='".md5($password)."'");
         $datos=$query->fetch();
         return ($datos['rol'] == "Administrador")?true:false;
     }

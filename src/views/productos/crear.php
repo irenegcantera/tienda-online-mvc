@@ -1,10 +1,10 @@
 <?php
 
-use Irene\TiendaOnlineMvc\views;
-
-// use Irene\TiendaOnlineMvc\conf\Configuration;
+use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\models\Familia;
+
+include_once $PATH_INCLUDE_MENU.'views/menu.php';
 
 $editar = false;
 
