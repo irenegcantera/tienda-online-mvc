@@ -6,7 +6,7 @@ class View{
     public $data;
 
     public function render($name, $datas){
-        // var_dump($datas);
+        // print_r($datas);
         $this->data = $datas;
         require dirname(__FILE__, 2) .'\\' .$name.'.php';
     }

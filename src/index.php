@@ -5,6 +5,7 @@ session_start();
 require dirname(__DIR__).'/vendor/autoload.php';
 
 use Irene\TiendaOnlineMvc\controllers\LoginController;
+use Irene\TiendaOnlineMvc\controllers\TiendaOnlineController;
 use Irene\TiendaOnlineMvc\controllers\FamiliaCrud;
 use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\controllers\TiendaCrud;
@@ -12,6 +13,7 @@ use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 
 error_reporting(E_ALL);
 $controlLogin = new LoginController();
+$controlTiendaOnline = new TiendaOnlineController();
 
 if (isset($_REQUEST['op'])) {
     $op = $_REQUEST['op'];
@@ -42,7 +44,24 @@ if (isset($_REQUEST['op'])) {
             break;
         case 'cerrar':
             $controlLogin -> salir();
-            break;       
+            break;     
+        case 'Añadir':
+            $controlTiendaOnline->addProductoCesta();
+            $controlTiendaOnline->showTiendaOnline();
+            break;
+        case 'borrar':
+            $controlTiendaOnline->deleteProductoCesta();
+            $controlTiendaOnline->showTiendaOnline();
+            break;
+        case 'Vaciar':
+            $controlTiendaOnline->emptyCesta();
+            break;
+        case 'Comprar':
+            $controlTiendaOnline->buyCesta();
+            break;
+        case 'Desconectar':
+            $controlTiendaOnline->closeSesion();
+            break;  
         case 'crear':
             $control->crear();
             break;

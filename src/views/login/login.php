@@ -10,7 +10,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Login</title>
-    <link href=<?php Configuration::$PATH_LOCALHOST."css/login.css"?> rel="stylesheet" type="text/css">
+    <link href="<?=Configuration::$PATH_LOCALHOST."css/login.css"?>" rel="stylesheet" type="text/css">
 </head>
 
 <body>

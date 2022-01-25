@@ -15,8 +15,9 @@ class Producto extends Model {
     private string $foto;
     private float $pvp;
     private string $familia;
+    private int $cantidad;
     
-    public function __construct($codigo,$nombre,$nombre_corto,$descripcion,$foto,$pvp,$familia){
+    public function __construct($codigo,$nombre,$nombre_corto,$descripcion,$foto,$pvp,$familia,$cantidad=1){
         $this->codigo =$codigo;
         $this->nombre=$nombre;
         $this->nombre_corto=$nombre_corto;
@@ -24,6 +25,7 @@ class Producto extends Model {
         $this->foto=$foto;
         $this->pvp=$pvp;
         $this->familia =$familia;
+        $this->cantidad = 1;
     }
 
     /* Función que añade productos a la base de datos */
@@ -121,7 +123,7 @@ class Producto extends Model {
 
     // Obtener el producto del código pasado por parámetro
     public static function getProducto($codigo){
-        $datos=self::query("SELECT * FROM producto WHERE codigo='".$codigo."'");
+        $datos=self::query("SELECT * FROM producto WHERE cod='".$codigo."'");
         $dato = $datos->fetch();
         if($dato){
             return new Producto($dato['cod'],$dato['nombre'],$dato['nombre_corto'],$dato['descripcion'],$dato['foto'],$dato['PVP'],$dato['familia']);

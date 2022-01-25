@@ -1,6 +1,6 @@
 <?php
 
-namespace Irene\TiendaOnlineMvc\controllers;
+namespace Irene\TiendaOnlineMvc\models;
 
 use Irene\TiendaOnlineMvc\libs\Model;
 use Irene\TiendaOnlineMvc\models\Producto;
@@ -10,19 +10,40 @@ class CestaCompra extends Model {
     protected $productosCesta = [];
 
     public function addProducto($codigo){
-        $this -> productosCesta[] = Producto::getProducto($codigo);
+        $producto = Producto::getProducto($codigo);
+        if(producto_in_cesta($codigo)){
+            $producto->__set("cantidad", $this->cantidad++);
+        }
+        $this -> productosCesta[] = $producto;
+    }
+
+    public function borrarProductoCesta($codigo){
+        foreach ($this->productosCesta as $key => $producto) {
+            if($producto->codigo==$codigo){
+               unset($this->productosCesta[$key]);
+            }
+        }
     }
 
     public function getProductosCesta(){
         return $this->productosCesta;
     }
 
-    // public function getCoste(){
-    //     $coste = 0;
-    //     foreach ($this->productos as $p)
-    //         $coste += $p->PVP;
-    //     return $coste;
-    // }
+    public function producto_in_cesta($codigo){
+        foreach ($this->productosCesta as $key => $producto) {
+            if($producto->codigo==$codigo){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getCosteTotal(){
+        $coste = 0;
+        foreach ($this->productosCesta as $producto)
+            $coste += $producto->pvp * $producto->cantidad;
+        return $coste;
+    }
 
     public function saveCesta(){
         $_SESSION['cesta'] = serialize($this);
@@ -37,7 +58,6 @@ class CestaCompra extends Model {
     }
 
     public function vaciarCesta(){
-        $this->productosCesta = [];
         if (isset($_SESSION['cesta'])) {
             unset($_SESSION['cesta']);
         }

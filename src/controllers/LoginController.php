@@ -30,7 +30,7 @@ class LoginController extends Controller {
                     return;
                 }else{
                     $tienda = new TiendaOnlineController;
-                    $tienda->showTienda();
+                    $tienda->showTiendaOnline();
                     return;
                 }    
             }else{

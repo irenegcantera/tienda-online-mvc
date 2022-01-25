@@ -5,6 +5,7 @@ namespace Irene\TiendaOnlineMvc\controllers;
 use Irene\TiendaOnlineMvc\libs\Controller;
 use Irene\TiendaOnlineMvc\controllers\LoginController;
 use Irene\TiendaOnlineMvc\models\CestaCompra;
+use Irene\TiendaOnlineMvc\models\Producto;
 
 class TiendaOnlineController extends Controller {
 
@@ -21,10 +22,15 @@ class TiendaOnlineController extends Controller {
         $this->cesta->saveCesta();
     }
 
+    public function deleteProductoCesta(){
+        $codigo = $this->get("cod");
+        $this->cesta->borrarProductoCesta($codigo);
+        $this->cesta->saveCesta();
+    }
+
     public function vaciar(){
         $this->cesta->vaciarCesta();
         $this->showTiendaOnline();
- 
     }
  
     public function showTiendaOnline(){
@@ -46,7 +52,7 @@ class TiendaOnlineController extends Controller {
     public function payCesta(){
         if(LoginController::comprobarSesion()){
             $this->render("pagar",["cesta"=>$this->cesta]);
-            $this->vaciar();;
+            $this->vaciar();
         }else{
             $this->render("views/login/login", null);
         }
