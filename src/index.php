@@ -42,7 +42,7 @@ if (isset($_REQUEST['op'])) {
         case 'Registrar':
             $controlLogin -> registrar();
             break;
-        case 'cerrar':
+        case 'Cerrar':
             $controlLogin -> salir();
             break;     
         case 'Añadir':
@@ -56,6 +56,15 @@ if (isset($_REQUEST['op'])) {
             break;
         case 'Comprar':
             $controlTiendaOnline->comprarCesta();
+            break;
+        case 'Pagar':
+            $controlTiendaOnline->pagarCesta();
+            break;
+        case 'Seguir comprando':
+            $controlTiendaOnline->showTiendaOnline();
+            break;
+        case 'Volver a la tienda':
+            $controlTiendaOnline->showTiendaOnline();
             break;
         case 'Desconectar':
             $controlTiendaOnline->closeSesion();

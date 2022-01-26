@@ -79,8 +79,8 @@ error_reporting(E_ALL);
         </div>
         <br class="divisor" />
         <div id="pie">
-            <form action='index.php' method='post'>
-                <input type='submit' name='op' value='cerrar'>
+            <form action='<?php Configuration::$PATH_LOCALHOST.'index.php'?>' method='post'>
+                <input type='submit' name='op' value='Cerrar sesión'>
             </form>
         </div>
     </div>

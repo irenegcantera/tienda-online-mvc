@@ -54,7 +54,7 @@ class LoginController extends Controller {
         return (isset($_SESSION['usuario']))?true:false;
     }
 
-    public static function salir(){
+    public function salir(){
         session_unset($_SESSION['usuario']);
         session_destroy();
         $this->render("views/login/login", null);

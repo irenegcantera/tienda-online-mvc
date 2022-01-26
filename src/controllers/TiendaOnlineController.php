@@ -45,23 +45,24 @@ class TiendaOnlineController extends Controller {
 
     public function comprarCesta(){
         if(LoginController::comprobarSesion()){
-            $this->render("cesta",["cesta"=>$this->cesta]);
+            $this->render("views/tienda-online/cesta",["cesta"=>$this->cesta]);
         }else{
             $this->render("views/login/login", null);
         }
     }
 
-    public function payCesta(){
+    public function pagarCesta(){
         if(LoginController::comprobarSesion()){
-            $this->render("pagar",["cesta"=>$this->cesta]);
-            $this->vaciar();
+            $this->render("views/tienda-online/pagar",["cesta"=>$this->cesta]);
+            $this->cesta->vaciarCesta();
         }else{
             $this->render("views/login/login", null);
         }
     }
 
     public function closeSesion(){
-        LoginController::salir();
+        $login = new LoginController();
+        $login->salir();
     }
 
 }

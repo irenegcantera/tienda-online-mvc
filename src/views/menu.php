@@ -43,7 +43,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 						</ul>                                       
 					</li>
 					<li><a>Acerca de</a></li>
-					<li><a href=<?=Configuration::$PATH_LOCALHOST."index.php?sesion=salir"?>>Salir</a></li>
+					<li><a href=<?=Configuration::$PATH_LOCALHOST."index.php?op=cerrar"?>>Salir</a></li>
 
 				</ul>
 			</nav>
