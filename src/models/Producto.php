@@ -15,9 +15,9 @@ class Producto extends Model {
     private string $foto;
     private float $pvp;
     private string $familia;
-    private int $cantidad;
+    private int $unidades;
     
-    public function __construct($codigo,$nombre,$nombre_corto,$descripcion,$foto,$pvp,$familia,$cantidad=1){
+    public function __construct($codigo,$nombre,$nombre_corto,$descripcion,$foto,$pvp,$familia,$unidades=1){
         $this->codigo =$codigo;
         $this->nombre=$nombre;
         $this->nombre_corto=$nombre_corto;
@@ -25,7 +25,7 @@ class Producto extends Model {
         $this->foto=$foto;
         $this->pvp=$pvp;
         $this->familia =$familia;
-        $this->cantidad = 1;
+        $this->unidades = $unidades;
     }
 
     /* Función que añade productos a la base de datos */

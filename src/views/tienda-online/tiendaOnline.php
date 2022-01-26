@@ -1,6 +1,7 @@
 <?php
 use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\models\TiendaOnlineController;
+error_reporting(E_ALL);
 ?>
 
 <!DOCTYPE html>
@@ -28,18 +29,7 @@ use Irene\TiendaOnlineMvc\models\TiendaOnlineController;
 
             // Comprobamos si se ha enviado el formulario de añadir     
             if (isset($_POST['op']['Añadir'])) {   
-                $codigo = $_POST['producto'];
-                // Creamos un array con los datos del nuevo producto    
-                if(isset($this->data['cesta']->$codigo)){
-                    $this->data['cesta']->addProductoCesta();
-                    // $_SESSION['cesta'][$codigo]['cantidad']++;
-                }else{
-
-                    // $producto['nombre'] = $_POST['nombre'];
-                    // $producto['precio'] = $_POST['precio'];
-                    // $producto['cantidad'] = 1;
-                    // $_SESSION['cesta'][$codigo] = $producto;
-                }    
+                $this->data['cesta']->addProductoCesta();
             }
 
             // Si la cesta está vacía, mostramos un mensaje
@@ -48,29 +38,26 @@ use Irene\TiendaOnlineMvc\models\TiendaOnlineController;
                 print '<p>Cesta vacía</p>';
             } else {
                 echo "<table>";
-                echo "<tr><th class = 'celda'>Producto</th><th>Cantidad</th><th>Precio</th></tr>";
+                echo "<tr><th>Producto</th><th>Cantidad</th><th>Precio</th></tr>";
                 foreach ($this->data['cesta']->getProductosCesta() as $producto){
                     // mostrar aqui la cantidad y el precio
-                    echo "<tr><td class = 'celda'><p>".$producto->codigo."</p></td>";
-                    // echo "<td>".$producto['cantidad']."</td>";
-                    // echo "<td>".$producto['cantidad']*$producto['precio']." €</td>";
+                    echo "<tr><td><p>".$producto->codigo."</p></td>";
+                    echo "<td>".$producto->unidades."</td>";
+                    echo "<td>".$producto->unidades * $producto -> pvp." €</td>";
                     echo"<td><a style='text-decoration:none' href='index.php?op=borrar&cod=".$producto->codigo
                     ."'>&nbsp&nbspX</td></tr>";
-                    // $total += $producto['cantidad']*$producto['precio'];
                 }
                 $cestaVacia = false;
                 echo "<tr><th><hr>Importe total</th><th><hr>&nbsp</th><th><hr>".$this->data['cesta']->getCosteTotal()." €</th></tr>";
                 echo "</table>";
             }
-            
-            
             ?>
             
-            <form id='vaciar' action='productos.php' method='post'>
-                <input type='submit' name='vaciar' value='Vaciar Cesta' <?php if ($cestaVacia) print "disabled='true'"; ?> />
+            <form id='vaciar' action='<?php Configuration::$PATH_LOCALHOST.'index.php' ?>' method='post'>
+                <input type='submit' name='op' value='Vaciar' <?php if ($cestaVacia) print "disabled='true'"; ?> />
             </form>
-            <form id='comprar' action='cesta.php' method='post'>
-                <input type='submit' name='comprar' value='Comprar' <?php if ($cestaVacia) print "disabled='true'"; ?> />
+            <form id='comprar' action='index.php' method='post'>
+                <input type='submit' name='op' value='Comprar' <?php if ($cestaVacia) print "disabled='true'"; ?> />
             </form>
         </div>
 
@@ -78,10 +65,8 @@ use Irene\TiendaOnlineMvc\models\TiendaOnlineController;
             <?php
                 echo "<table>";
                 foreach ($this->data['productos'] as $producto) {
-                    echo "<p><form id='".$producto->codigo."' action='".$_SERVER['PHP_SELF']."' method='post'>";
+                    echo "<p><form id='".$producto->codigo."' action='".Configuration::$PATH_LOCALHOST."'index.php' method='post'>";
                     echo "<input type='hidden' name='producto' value='" . $producto->codigo . "'/>";
-                    echo "<input type='hidden' name='nombre' value='" . $producto->nombre_corto . "'/>";
-                    echo "<input type='hidden' name='precio' value='" . $producto->pvp . "'/>";
                     echo "<tr><td><input type='submit' name='op' value='Añadir'/></td>";
                     echo "<td>".$producto->nombre_corto."</td>";
                     echo "<td>".$producto->pvp." euros</td></tr>";
@@ -94,7 +79,7 @@ use Irene\TiendaOnlineMvc\models\TiendaOnlineController;
         </div>
         <br class="divisor" />
         <div id="pie">
-            <form action='' method='post'>
+            <form action='index.php' method='post'>
                 <input type='submit' name='op' value='cerrar'>
             </form>
         </div>

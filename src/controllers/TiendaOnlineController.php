@@ -20,12 +20,14 @@ class TiendaOnlineController extends Controller {
         $codigo = $this->get("producto");
         $this->cesta->addProducto($codigo);
         $this->cesta->saveCesta();
+        $this->showTiendaOnline();
     }
 
     public function deleteProductoCesta(){
         $codigo = $this->get("cod");
         $this->cesta->borrarProductoCesta($codigo);
         $this->cesta->saveCesta();
+        $this->showTiendaOnline();
     }
 
     public function vaciar(){

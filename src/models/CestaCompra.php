@@ -11,8 +11,10 @@ class CestaCompra extends Model {
 
     public function addProducto($codigo){
         $producto = Producto::getProducto($codigo);
-        if(producto_in_cesta($codigo)){
-            $producto->__set("cantidad", $this->cantidad++);
+        foreach($this->productosCesta as $key => $prod){
+            if($prod->codigo==$codigo){
+                $producto->unidades++;
+            }
         }
         $this -> productosCesta[] = $producto;
     }
@@ -29,19 +31,10 @@ class CestaCompra extends Model {
         return $this->productosCesta;
     }
 
-    public function producto_in_cesta($codigo){
-        foreach ($this->productosCesta as $key => $producto) {
-            if($producto->codigo==$codigo){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public function getCosteTotal(){
         $coste = 0;
         foreach ($this->productosCesta as $producto)
-            $coste += $producto->pvp * $producto->cantidad;
+            $coste += $producto->pvp * $producto->unidades;
         return $coste;
     }
 

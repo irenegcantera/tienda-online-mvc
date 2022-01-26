@@ -47,17 +47,15 @@ if (isset($_REQUEST['op'])) {
             break;     
         case 'Añadir':
             $controlTiendaOnline->addProductoCesta();
-            $controlTiendaOnline->showTiendaOnline();
             break;
         case 'borrar':
             $controlTiendaOnline->deleteProductoCesta();
-            $controlTiendaOnline->showTiendaOnline();
             break;
         case 'Vaciar':
-            $controlTiendaOnline->emptyCesta();
+            $controlTiendaOnline->vaciar();
             break;
         case 'Comprar':
-            $controlTiendaOnline->buyCesta();
+            $controlTiendaOnline->comprarCesta();
             break;
         case 'Desconectar':
             $controlTiendaOnline->closeSesion();

@@ -1,28 +1,8 @@
-<?php     // Recuperamos la información de la sesión
-     session_start();
-     // Y comprobamos que el usuario se haya autentificado
-     if (!isset($_SESSION['usuario'])) {
-        die("Error - debe <a href='login.php'>identificarse</a>.<br />");     
-    } 
-
-    if(isset($_POST['seguir'])){
-        header("Location: productos.php");
-    }
-
-    if(isset($_POST['pagar'])){
-        header("Location: facturar.php");
-    }
-
-
-?>
 <!DOCTYPE html > 
-<!-- Desarrollo Web en Entorno Servidor --> 
-<!-- Tema 4 : Desarrollo de aplicaciones web con PHP --> 
-<!-- Ejemplo Tienda Web: cesta.php --> 
 <html> 
     <head>   
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">   
-        <title>Ejemplo Unidad 5: Cesta de la Compra</title>   
+        <title>Cesta de la compra</title>   
         <link href="tienda.css" rel="stylesheet" type="text/css"> 
     </head> 
  
