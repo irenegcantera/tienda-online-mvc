@@ -26,15 +26,15 @@ class Usuario extends Model {
     /* Función que crea usuarios que puedan acceder a la tienda online como clientes o como admnistradores */
     function add(){
         // $this -> token = md5(($this -> email).time());
-        $this -> status = 1;
-        $query = $this ->prepare("INSERT INTO usuario VALUES(:nombre,:password,:email,:rol,:status,:token");
+        //$this -> status = 1;
+        $query = $this ->prepare("INSERT INTO usuario VALUES(:nombre,:password,:email,:rol,:status,:token)");
         $query->execute(['nombre'=>$this->nombre,
                         'password'=>$this->password,
                         'email'=>$this->email,
                         'rol'=>$this->rol,
                         'status'=>$this->status,
                         'token'=>$this->token]);
-        $query->closeCursor();
+        //$query->closeCursor();
     }
 
     // Solo va a actualizar el estado y el rol de usuario

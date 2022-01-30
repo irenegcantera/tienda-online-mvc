@@ -3,6 +3,9 @@
 use Irene\TiendaOnlineMvc\controllers\FamiliaCrud;
 use Irene\TiendaOnlineMvc\conf\Configuration;
 
+
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
+
 $editar = false;
 
 if (isset($this -> data)) {

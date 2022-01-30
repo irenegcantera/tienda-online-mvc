@@ -50,6 +50,40 @@ class LoginController extends Controller {
         $this->render("views/login/login", $info);
     }
 
+    public function registrarForm(){
+        $this->render("views/login/registrar", null);
+    }
+
+    public function registrar(){
+        $usuario = $this->get('nombre');
+        $password = $this->get('password');
+        $repassword = $this->get('repassword');
+        $email = $this->get('email');
+        $rol = "Usuario";
+        $status = 0;
+
+        if(!empty($_POST['nombre']) && !empty($_POST['password']) && !empty($_POST['repassword']) && !empty($_POST['email'])){ 
+            if(Usuario::checkUser($usuario,$password) == -1){ // no hay estado, no existe usuario
+                if($password == $repassword){
+                    $nuevoUsuario = new Usuario($usuario,$password,$email,$rol,$status);
+                    $nuevoUsuario->add();
+                    // if(sendActivacion($email,$token)){ // enviar email
+                    //     $error = "Mensaje enviado correctamente, revise la carpeta spam.";
+                    // }else{
+                    //     $error = "No se ha podido enviar el correo con la activación del ususario.";
+                    // }
+                }else{
+                    $info = ["mensaje" => "Las contraseñas deben coincidir."];
+                }
+            }else{
+                $info = ["mensaje" => "El usuario ya está registrado."];
+            }         
+        }else{
+            $info = ["mensaje" => "Los campos son obligatorios."];
+        }
+    }
+    
+
     public static function comprobarSesion(){
         return (isset($_SESSION['usuario']))?true:false;
     }

@@ -39,6 +39,9 @@ if (isset($_REQUEST['op'])) {
         case 'Entrar':
             $controlLogin -> login();
             break;
+        case 'Registrarse':
+            $controlLogin -> registrarForm();
+            break;
         case 'Registrar':
             $controlLogin -> registrar();
             break;

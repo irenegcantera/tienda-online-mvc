@@ -4,23 +4,28 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\controllers\ProductoCrud;
 use Irene\TiendaOnlineMvc\models\Familia;
 
-include_once $PATH_INCLUDE_MENU.'views/menu.php';
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
 
 $editar = false;
 
 if (isset($this -> data)) {
     $editar = true;
-    $con = $this -> data;
+    $codigo = $this -> data ->__get('cod');
+    $nombre_corto = $this -> data ->__get('nombre_corto');
+    $descripcion = $this -> data ->__get('descripcion');
+    $pvp = $this -> data ->__get('pvp');
+    $familia = $this -> data ->__get('familia');
+
 }
 
 ?>
 
-<form name="formulario" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">  
+<form name="formulario" action="<?php Configuration::$PATH_LOCALHOST.'views\familias\crear.php' ?>" method="POST" enctype="multipart/form-data">  
 
 <?php
 
 if($editar){
-    echo "<h2>PRODUCTO <i>$con -> codigo</i> A EDITAR</h2><br>
+    echo "<h2>PRODUCTO <i>$codigo</i> A EDITAR</h2><br>
             <p>Introduce los datos que se vayan a modificar:</p>";
 }else{
     echo "<p>Introduce los siguientes datos:</p>";
@@ -33,19 +38,19 @@ if($editar){
 </fieldset>
 <fieldset>
     <legend>Nombre</legend>
-    <input name='ncorto' type= 'text' value='<?php if($editar) echo ($con -> nombre_corto)?>' required>
+    <input name='nombre_corto' type= 'text' value='<?php if($editar) echo ($nombre_corto)?>' required>
 </fieldset>
 <fieldset>
     <legend>Descripción</legend>
-    <textarea name='desc' rows='15' cols='100' value='<?php if($editar) echo ($con -> descripcion)?>'></textarea>
+    <textarea name='descripcion' rows='15' cols='100' value='<?php if($editar) echo ($descripcion)?>'></textarea>
 </fieldset>
 <fieldset>
     <legend>Foto</legend>
-    <input name='foto' type= 'file' value='<?php if($editar) echo ($con -> foto)?>'>
+    <input name='foto' type= 'file' value='' disabled>
 </fieldset>
 <fieldset>
     <legend>PVP</legend>
-    <input name='pvp' type= 'text' value='<?php if($editar) echo ($con -> pvp)?>' required>
+    <input name='pvp' type= 'text' value='<?php if($editar) echo ($pvp)?>' required>
 </fieldset>
 <fieldset>
     <legend>Familia</legend>
@@ -53,15 +58,13 @@ if($editar){
     <?php
     if($editar){
         $familias = Familia::getFamilias();
-        foreach ($familias as $familia){
-            echo "<option value=".$familia->codigo." ".($familia->codigo== $con->familia?'selected':'').">".$familia->nombre."</option>";
-        
+        foreach ($familias as $fam){
+            echo "<option value=".$fam->codigo." ".($fam->codigo== $familia?'selected':'').">".$fam->nombre."</option>";
         }
     }else{
         $familias = Familia::getFamilias();
-        foreach ($familias as $familia){
-            echo "<option value=".$familia->codigo." ".($familia->codigo== 'SAI'?'selected':'').">".$familia->nombre."</option>";
-        
+        foreach ($familias as $fam){
+            echo "<option value=".$fam->codigo." ".($fam->codigo== 'SAI'?'selected':'').">".$fam->nombre."</option>";
         }
     }
     ?>
@@ -70,7 +73,7 @@ if($editar){
 
 <?php
 if($editar){
-    echo "<input name='codigo' type= 'hidden' value='".$con -> codigo."'>";
+    echo "<input name='codigo' type= 'hidden' value='".$codigo."'>";
 }
 ?>
 

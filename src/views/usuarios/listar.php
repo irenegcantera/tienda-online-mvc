@@ -1,3 +1,8 @@
+<?php
+use Irene\TiendaOnlineMvc\conf\Configuration;
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
+?>
+
 <br><br>
 <article>
     <table border>

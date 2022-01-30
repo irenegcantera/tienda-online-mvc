@@ -4,6 +4,8 @@ use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
+
 $editar = false;
 
 if (isset($this -> data)) {
@@ -31,7 +33,7 @@ if($editar){
 ?>
 <fieldset>
     <legend>Usuario</legend>
-    <input name='usuario' type= 'text'
+    <input name='nombre' type= 'text'
         <?php if($editar){
                 echo "value='$nombre'";
                 echo "disabled>";

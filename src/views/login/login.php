@@ -1,7 +1,5 @@
 <?php
-
 use Irene\TiendaOnlineMvc\conf\Configuration;
-
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +32,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
                 </div><br>
                 <div class='campo'>
                     <input type='submit' name='op' value='Entrar'>
-                    <input type='submit' name='op' value='Registrar'>
+                    <input type='submit' name='op' value='Registrarse'>
                 </div><br>
             </fieldset>
         </form>
