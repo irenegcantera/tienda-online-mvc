@@ -4,6 +4,8 @@ use Irene\TiendaOnlineMvc\controllers\UsuarioCrud;
 use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
+
 $editar = false;
 
 if (isset($this -> data)) {
@@ -18,7 +20,7 @@ if (isset($this -> data)) {
 
 ?>
 
-<form name="formulario" action="<?php Configuration::$PATH.'views\usuarios\crear.php' ?>" method="POST" enctype="multipart/form-data">  
+<form name="formulario" action="<?php Configuration::$PATH_LOCALHOST.'views\usuarios\crear.php' ?>" method="POST" enctype="multipart/form-data">  
 
 <?php
 
@@ -31,7 +33,7 @@ if($editar){
 ?>
 <fieldset>
     <legend>Usuario</legend>
-    <input name='usuario' type= 'text'
+    <input name='user' type= 'text'
         <?php if($editar){
                 echo "value='$nombre'";
                 echo "disabled>";
@@ -59,11 +61,7 @@ if($editar){
 </fieldset>
 <fieldset>
     <legend>Correo electrónico</legend>
-    <input name='email' type= 'email' value='' <?php if($editar){
-                echo " disabled>";
-        }else{
-            echo " required>"; 
-        }?>
+    <input name='email' type= 'email' value=''>
 </fieldset>
 <fieldset>
     <legend>Rol del usuario</legend>
@@ -104,7 +102,7 @@ if($editar){
 
 <?php
 if($editar){
-    echo "<input name='nombre' type= 'hidden' value='".$nombre."'>";
+    echo "<input name='user' type= 'hidden' value='".$nombre."'>";
 }
 ?>
 

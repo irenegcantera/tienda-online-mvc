@@ -18,7 +18,7 @@ class FamiliaCrud extends Controller {
     }
 
     public function guardar(){
-        $this->familia = new Familia($this->get('codigo'), $this->get('nombre'));
+        $this->familia = new Familia($this->get('cod'), $this->get('nombre'));
         $this->familia->add();
         $this->render("views/familias/crear", null);
     }
@@ -28,24 +28,24 @@ class FamiliaCrud extends Controller {
     }
 
     public function eliminar(){
-        $this->familia = new Familia($this->get('codigo'), "");
+        $this->familia = new Familia($this->get('cod'), "");
         $this->familia->delete();
         $this->render("views/familias/listar", $this->familia->getFamilias());
     }
 
     public function editar(){
-        $this->familia = new Familia($this->get('codigo'), $this->get('nombre'));
+        $this->familia = Familia::getFamilia($this->get('cod'));
         $this->render("views/familias/crear", $this->familia);
     }
 
     public function actualizar(){
-        $this->familia = new Familia($this->get('codigo'), $this->get('nombre'));
+        $this->familia = new Familia($this->get('cod'), $this->get('nombre'));
         $this->familia->update();
         $this->render("views/familias/listar", $this->familia->getFamilias());
     }
 
     public function inicio(){
-        $this->render('menu', null);
+        $this->render('views/menu', null);
     }
     
 }

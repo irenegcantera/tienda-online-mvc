@@ -19,7 +19,7 @@ class ProductoCrud extends Controller {
     }
 
     public function guardar(){
-        $this->producto = new Producto($this->get('codigo'), $this->get('nombre'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('foto'),$this->get('pvp'),$this->get('familia'));
+        $this->producto = new Producto($this->get('cod'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('pvp'),$this->get('familia'));
         $this->producto->add();
         $this->render("views/productos/crear", null);
     }
@@ -29,22 +29,22 @@ class ProductoCrud extends Controller {
     }
 
     public function eliminar(){
-        $this->producto = new Producto($this->get('codigo'), "", "", "", "", "", "");
+        $this->producto = new Producto($this->get('cod'), "", "", 0, "");
         $this->producto->delete();
         $this->render("views/productos/listar", $this->producto->getProductos());
     }
 
     public function editar(){
-        $this->producto = new Producto($this->get('codigo'), $this->get('nombre'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('foto'),$this->get('pvp'),$this->get('familia'));
+        $this->producto = Producto::getProducto($this->get('cod'));
         $this->render('views/productos/crear', $this->producto);
     }
 
     public function inicio(){
-        $this->render('menu', null);
+        $this->render('views/menu', null);
     }
 
     public function actualizar(){
-        $this->producto = new Producto($this->get('codigo'), $this->get('nombre'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('foto'),$this->get('pvp'),$this->get('familia'));
+        $this->producto = new Producto($this->get('cod'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('pvp'),$this->get('familia'));
         $this->producto->update();
         $this->render('views/productos/listar', $this->producto->getProductos());
     }

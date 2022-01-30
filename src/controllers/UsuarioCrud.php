@@ -18,7 +18,7 @@ class UsuarioCrud extends Controller {
     }
 
     public function guardar(){
-        $this->usuario = new Usuario($this->get('nombre'), $this->get('password'), $this->get('email'),$this->get('rol'),$this->get('status'));
+        $this->usuario = new Usuario($this->get('user'), $this->get('password'), $this->get('email'),$this->get('rol'),$this->get('status'));
         $this->usuario->add();
         $this->render("views/usuarios/crear", null);
     }
@@ -33,24 +33,24 @@ class UsuarioCrud extends Controller {
     // }
     
     public function eliminar(){
-        $this->usuario = new Usuario($this->get('nombre'), "", "");
+        $this->usuario = new Usuario($this->get('user'), "", "", "", 0);
         $this->usuario->delete();
         $this->render("views/usuarios/listar", $this->usuario->getUsuarios());
     }
 
     public function editar(){
-        $this->usuario = new Usuario($this->get('nombre'), "", "",$this->get('rol'),$this->get('status'));
+        $this->usuario = Usuario::getUsuario($this->get('user'));
         $this->render("views/usuarios/crear", $this->usuario);
     }
 
     public function actualizar(){
-        $this->usuario = new Usuario($this->get('nombre'), "", "",$this->get('rol'),$this->get('status'));
+        $this->usuario = new Usuario($this->get('user'), "", $this->get('email'),$this->get('rol'),$this->get('status'));
         $this->usuario->update();
         $this->render("views/usuarios/listar", $this->usuario->getUsuarios());
     }
 
     public function inicio(){
-        $this->render('menu', null);
+        $this->render('views/menu', null);
     }
 
     public function acercaDe(){

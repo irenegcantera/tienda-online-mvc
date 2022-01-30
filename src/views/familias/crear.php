@@ -3,6 +3,9 @@
 use Irene\TiendaOnlineMvc\controllers\FamiliaCrud;
 use Irene\TiendaOnlineMvc\conf\Configuration;
 
+
+include_once Configuration::$PATH_INCLUDE_MENU.'views/menu.php';
+
 $editar = false;
 
 if (isset($this -> data)) {
@@ -14,7 +17,7 @@ if (isset($this -> data)) {
 ?>
 
 
-<form name="formulario" action="<?php Configuration::$PATH.'views\familias\crear.php' ?>" method="POST" enctype="multipart/form-data">
+<form name="formulario" action="<?php Configuration::$PATH_LOCALHOST.'views\familias\crear.php' ?>" method="POST" enctype="multipart/form-data">
 <?php
 if($editar){
     echo "<h2>FAMILIA <i>'$codigo'</i> A EDITAR</h2><br>
@@ -25,7 +28,7 @@ if($editar){
 ?>  
     <fieldset>
         <legend>Código</legend>
-        <input name='codigo' type= 'text' 
+        <input name='cod' type= 'text' 
             <?php if($editar){
                  echo "value='$codigo'";
                  echo "disabled";
@@ -39,7 +42,7 @@ if($editar){
     </fieldset>
 <?php
 if($editar){
-    echo "<input name='codigo' type= 'hidden' value='".$codigo."'>";
+    echo "<input name='cod' type= 'hidden' value='".$codigo."'>";
 }
 
 ?> 

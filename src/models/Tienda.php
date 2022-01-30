@@ -61,6 +61,17 @@ class Tienda extends Model {
         return $tiendas;
     }
 
+    // Obtener el producto del código pasado por parámetro
+    public static function getTienda($codigo){
+        $datos=self::query("SELECT * FROM tienda WHERE cod='".$codigo."'");
+        $dato = $datos->fetch();
+        if($dato){
+            return new Tienda($dato['cod'],$dato['nombre'],$dato['tlf']);
+        }else{
+            return null;
+        }
+    }
+
     private function generaCodigo(){
         $query=$this->query("SELECT max(cod) as cod FROM tienda");
         $data = $query->fetch();
