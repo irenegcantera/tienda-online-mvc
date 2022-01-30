@@ -24,7 +24,7 @@ if($editar){
             <p>Introduce los datos que se vayan a modificar:</p>
             <fieldset>
                 <legend>Código</legend>
-                <input name='codigo' type= 'text' value='$codigo' disabled>
+                <input name='cod' type= 'text' value='$codigo' disabled>
             </fieldset>";
 }else{
     echo "<p>Introduce los siguientes datos:</p>";
@@ -43,7 +43,7 @@ if($editar){
 
 <?php
 if($editar){
-    echo "<input name='codigo' type= 'hidden' value='".$codigo."'>";
+    echo "<input name='cod' type= 'hidden' value='".$codigo."'>";
 }
 ?>
 

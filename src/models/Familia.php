@@ -46,6 +46,17 @@ class Familia extends Model {
       
         return $familias;
     }
+
+    // Obtener la familia del código pasado por parámetro
+    public static function getFamilia($codigo){
+        $datos=self::query("SELECT * FROM familia WHERE cod='".$codigo."'");
+        $dato = $datos->fetch();
+        if($dato){
+            return new Familia($dato['cod'],$dato['nombre']);
+        }else{
+            return null;
+        }
+    }
   
     public function __get($prop){
         return $this->$prop;

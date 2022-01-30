@@ -28,7 +28,7 @@ if($editar){
 ?>  
     <fieldset>
         <legend>Código</legend>
-        <input name='codigo' type= 'text' 
+        <input name='cod' type= 'text' 
             <?php if($editar){
                  echo "value='$codigo'";
                  echo "disabled";
@@ -42,7 +42,7 @@ if($editar){
     </fieldset>
 <?php
 if($editar){
-    echo "<input name='codigo' type= 'hidden' value='".$codigo."'>";
+    echo "<input name='cod' type= 'hidden' value='".$codigo."'>";
 }
 
 ?> 

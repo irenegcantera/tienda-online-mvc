@@ -28,18 +28,18 @@ class TiendaCrud extends Controller {
     }
 
     public function eliminar(){
-        $this->tienda = new Tienda($this->get('codigo'), "", "");
+        $this->tienda = new Tienda($this->get('cod'), "", "");
         $this->tienda->delete();
         $this->render("views/tiendas/listar", $this->tienda->getTiendas());
     }
 
     public function editar(){
-        $this->tienda = new Tienda($this->get('codigo'), $this->get('nombre'), $this->get('tlf'));
+        $this->tienda = Tienda::getTienda($this->get('cod'));
         $this->render("views/tiendas/crear", $this->tienda);
     }
 
     public function actualizar(){
-        $this->tienda = new Tienda($this->get('codigo'), $this->get('nombre'), $this->get('tlf'));
+        $this->tienda = new Tienda($this->get('cod'), $this->get('nombre'), $this->get('tlf'));
         $this->tienda->update();
         $this->render("views/tiendas/listar", $this->tienda->getTiendas());
     }

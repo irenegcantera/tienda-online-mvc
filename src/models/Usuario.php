@@ -92,13 +92,16 @@ class Usuario extends Model {
         return $usuarios;
     }
 
-    // public static function getUsuario(usuario, contraseña){
-    //     $usuarios=[];
-    //     $datos=self::query("SELECT * FROM usuario where usuario = usuario and contraseña = contraseño");
-        
-    //     if(datos->length > 0) return true
-    //      else return false;
-    // }
+    // Obtener el producto del código pasado por parámetro
+    public static function getUsuario($nombre){
+        $datos=self::query("SELECT * FROM usuario WHERE nombre='".$nombre."'");
+        $dato = $datos->fetch();
+        if($dato){
+            return new Usuario($dato['nombre'],$dato['password'],$dato['email'],$dato['rol'],$dato['status'],$dato['token']);
+        }else{
+            return null;
+        }
+    }
   
     public function __get($prop){
         return $this->$prop;

@@ -33,7 +33,7 @@ if($editar){
 ?>
 <fieldset>
     <legend>Usuario</legend>
-    <input name='nombre' type= 'text'
+    <input name='user' type= 'text'
         <?php if($editar){
                 echo "value='$nombre'";
                 echo "disabled>";
@@ -102,7 +102,7 @@ if($editar){
 
 <?php
 if($editar){
-    echo "<input name='nombre' type= 'hidden' value='".$nombre."'>";
+    echo "<input name='user' type= 'hidden' value='".$nombre."'>";
 }
 ?>
 
