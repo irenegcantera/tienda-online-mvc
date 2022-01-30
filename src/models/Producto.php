@@ -62,38 +62,36 @@ class Producto extends Model {
     /* Función que actualiza productos de la base de datos */
     function update(){ 
         if($this -> descripcion == NULL){
-            if($this -> foto == NULL){
-                $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, PVP =:pvp, familia=:familia WHERE cod =:codigo");
+            // if($this -> foto == NULL){
+            //     $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, PVP =:pvp, familia=:familia WHERE cod =:codigo");
+            //     $query->execute(['codigo'=>$this->codigo,
+            //                     'nombre_corto'=>$this->nombre_corto,
+            //                     'pvp'=>$this->pvp,
+            //                     'familia'=>$this->familia]);
+            // }else{
+                $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, PVP=:pvp, familia =:familia WHERE cod =:codigo");
                 $query->execute(['codigo'=>$this->codigo,
                                 'nombre_corto'=>$this->nombre_corto,
                                 'pvp'=>$this->pvp,
                                 'familia'=>$this->familia]);
-            }else{
-                $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, foto =:$foto, PVP=:pvp, familia =:familia WHERE cod =:codigo");
-                $query->execute(['codigo'=>$this->codigo,
-                                'nombre_corto'=>$this->nombre_corto,
-                                'foto'=>$this->foto,
-                                'pvp'=>$this->pvp,
-                                'familia'=>$this->familia]);
-            }
+            // }
         }else{
-            if($this -> foto == NULL){
-                $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, descripcion =:descripcion, PVP=:pvp, familia =:familia WHERE cod =:codigo");
-                $query->execute(['codigo'=>$this->codigo,
-                                'nombre_corto'=>$this->nombre_corto,
-                                'descripcion'=>$this->descripcion,
-                                'pvp'=>$this->pvp,
-                                'familia'=>$this->familia]);
-            }else{
+            // if($this -> foto == NULL){
+            //     $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, descripcion =:descripcion, PVP=:pvp, familia =:familia WHERE cod =:codigo");
+            //     $query->execute(['codigo'=>$this->codigo,
+            //                     'nombre_corto'=>$this->nombre_corto,
+            //                     'descripcion'=>$this->descripcion,
+            //                     'pvp'=>$this->pvp,
+            //                     'familia'=>$this->familia]);
+            // }else{
                 $query = $this->prepare("UPDATE producto SET nombre_corto=:nombre_corto, descripcion 
-                =:descripcion, foto =:foto, PVP=:pvp, familia =:familia WHERE cod =:codigo");
+                =:descripcion, PVP=:pvp, familia =:familia WHERE cod =:codigo");
                 $query->execute(['codigo'=>$this->codigo,
                                 'nombre_corto'=>$this->nombre_corto,
                                 'descripcion'=>$this->descripcion,
-                                'foto'=>$this->foto,
                                 'pvp'=>$this->pvp,
                                 'familia'=>$this->familia]);
-            }
+            // }
         }        
     }
 

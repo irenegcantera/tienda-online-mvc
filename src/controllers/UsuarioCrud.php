@@ -33,7 +33,7 @@ class UsuarioCrud extends Controller {
     // }
     
     public function eliminar(){
-        $this->usuario = new Usuario($this->get('nombre'), "", "");
+        $this->usuario = new Usuario($this->get('nombre'), "", "", "", 0);
         $this->usuario->delete();
         $this->render("views/usuarios/listar", $this->usuario->getUsuarios());
     }
@@ -44,7 +44,7 @@ class UsuarioCrud extends Controller {
     }
 
     public function actualizar(){
-        $this->usuario = new Usuario($this->get('nombre'), "", "",$this->get('rol'),$this->get('status'));
+        $this->usuario = new Usuario($this->get('nombre'), "", $this->get('email'),$this->get('rol'),$this->get('status'));
         $this->usuario->update();
         $this->render("views/usuarios/listar", $this->usuario->getUsuarios());
     }

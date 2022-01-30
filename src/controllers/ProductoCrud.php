@@ -29,7 +29,7 @@ class ProductoCrud extends Controller {
     }
 
     public function eliminar(){
-        $this->producto = new Producto($this->get('codigo'), "", "", "", "", "", "");
+        $this->producto = new Producto($this->get('cod'), "", "", 0, "");
         $this->producto->delete();
         $this->render("views/productos/listar", $this->producto->getProductos());
     }
@@ -44,7 +44,7 @@ class ProductoCrud extends Controller {
     }
 
     public function actualizar(){
-        $this->producto = new Producto($this->get('codigo'), $this->get('nombre'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('foto'),$this->get('pvp'),$this->get('familia'));
+        $this->producto = new Producto($this->get('cod'), $this->get('nombre_corto'), $this->get('descripcion'),$this->get('pvp'),$this->get('familia'));
         $this->producto->update();
         $this->render('views/productos/listar', $this->producto->getProductos());
     }

@@ -10,7 +10,7 @@ $editar = false;
 
 if (isset($this -> data)) {
     $editar = true;
-    $codigo = $this -> data ->__get('cod');
+    $codigo = $this -> data ->__get('codigo');
     $nombre_corto = $this -> data ->__get('nombre_corto');
     $descripcion = $this -> data ->__get('descripcion');
     $pvp = $this -> data ->__get('pvp');
@@ -26,16 +26,20 @@ if (isset($this -> data)) {
 
 if($editar){
     echo "<h2>PRODUCTO <i>$codigo</i> A EDITAR</h2><br>
-            <p>Introduce los datos que se vayan a modificar:</p>";
+            <p>Introduce los datos que se vayan a modificar:</p>
+            <fieldset>
+                <legend>Código</legend>
+                <input name='cod' type= 'text' value='$codigo' disabled>
+            </fieldset>";
 }else{
-    echo "<p>Introduce los siguientes datos:</p>";
+    echo "<p>Introduce los siguientes datos:
+        </p><fieldset>
+            <legend>Código</legend>
+            <input name='cod' type= 'text' value='' required>
+        </fieldset>";
 }
 ?>
 
-<fieldset>
-    <legend>Código</legend>
-    <input name='cod' type= 'text' value='' required>
-</fieldset>
 <fieldset>
     <legend>Nombre</legend>
     <input name='nombre_corto' type= 'text' value='<?php if($editar) echo ($nombre_corto)?>' required>

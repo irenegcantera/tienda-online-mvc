@@ -40,8 +40,9 @@ class Usuario extends Model {
     // Solo va a actualizar el estado y el rol de usuario
     /* Función que actualiza datos del usuario de la base de datos */
     function update(){ 
-        $query = $this -> prepare("UPDATE usuario SET rol =:rol,status=:status WHERE nombre =:nombre");
+        $query = $this -> prepare("UPDATE usuario SET email=:email, rol =:rol,status=:status WHERE nombre =:nombre");
         $query->execute(['nombre'=>$this->nombre,
+                        'email'=>$this->email,
                         'rol'=>$this->rol,
                         'status'=>$this->status]);
         $query->closeCursor();

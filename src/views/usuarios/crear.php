@@ -61,11 +61,7 @@ if($editar){
 </fieldset>
 <fieldset>
     <legend>Correo electrónico</legend>
-    <input name='email' type= 'email' value='' <?php if($editar){
-                echo " disabled>";
-        }else{
-            echo " required>"; 
-        }?>
+    <input name='email' type= 'email' value=''>
 </fieldset>
 <fieldset>
     <legend>Rol del usuario</legend>
