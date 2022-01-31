@@ -18,7 +18,7 @@ class LoginController extends Controller {
         $password = $this->get('password');
 
         if (empty($usuario) || empty($password)) {
-            $info = ["mensaje" => "Los campos son obligatorios."];
+            $info = ["error" => "Los campos son obligatorios."];
         } else {
             $estadoUsuario = Usuario::checkUser($usuario,$password);
             if($estadoUsuario == ConfigurationStatus::$ACTIVO){
@@ -36,18 +36,22 @@ class LoginController extends Controller {
             }else{
                 switch ($estadoUsuario) {
                     case 0:
-                        $info = ["mensaje" => "El usuario está bloqueado, reestablece la contraseña."];
+                        $info = ["error" => "El usuario está bloqueado, reestablece la contraseña."];
                         break;
                     case 2:
-                        $info = ["mensaje" => "La cuenta no está activada, revisa tu correo electrónico."];
+                        $info = ["error" => "La cuenta no está activada, revisa tu correo electrónico."];
                         break;
                     case -1:
-                        $info = ["mensaje" => "Usuario o contraseña no válidos!"];
+                        $info = ["error" => "Usuario o contraseña no válidos!"];
                         break;
                 }
             }
         }
-        $this->render("views/login/login", $info);
+
+        if(isset($info['error'])){
+            $this->render("views/login/login", $info);
+        }
+        
     }
 
     public function registrarForm(){
