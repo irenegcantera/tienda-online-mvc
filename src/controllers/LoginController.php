@@ -91,7 +91,6 @@ class LoginController extends Controller {
         }
         
     }
-    
 
     public static function comprobarSesion(){
         return (isset($_SESSION['usuario']))?true:false;
