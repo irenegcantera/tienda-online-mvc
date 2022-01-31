@@ -5,6 +5,13 @@
     background-color : #ffff00; 
 } 
 
+.mensaje {   
+    font-family: Verdana, Arial, sans-serif;    
+    font-size: 1em;   
+    color: rgb(0, 153, 13);   
+    background-color : #f0f0f0; 
+} 
+
 body { 
     display: flex;
     flex-direction: column;

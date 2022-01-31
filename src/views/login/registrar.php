@@ -1,5 +1,5 @@
 <?php
-
+use Irene\TiendaOnlineMvc\conf\Configuration;
 ?>
 
 <!DOCTYPE html>
@@ -9,12 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="<?=Configuration::$PATH_LOCALHOST."css/login.css"?>" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id = "login">
-        <form method="POST" action="">
+        <form method="POST" action="<?php Configuration::$PATH_LOCALHOST.'index.php'?>">
             <fieldset>
+                <?php
+                if(isset($this->data['error'])){
+                    echo "<div class='error'>".$this->data['error']."</div>";
+                }
+                ?>
                 <legend>Registro de usuario</legend>
                 <div class='campo'>
                     <label for='nombre'>Nombre:</label><br>

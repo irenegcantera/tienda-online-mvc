@@ -27,13 +27,19 @@ class Usuario extends Model {
     function add(){
         // $this -> token = md5(($this -> email).time());
         //$this -> status = 1;
-        $query = $this ->prepare("INSERT INTO usuario VALUES(:nombre,:password,:email,:rol,:status,:token)");
-        $query->execute(['nombre'=>$this->nombre,
-                        'password'=>$this->password,
-                        'email'=>$this->email,
-                        'rol'=>$this->rol,
-                        'status'=>$this->status,
-                        'token'=>$this->token]);
+        try{
+            $query = $this ->prepare("INSERT INTO usuario VALUES(:nombre,:password,:email,:rol,:status,:token)");
+            $query->execute(['nombre'=>$this->nombre,
+                            'password'=>$this->password,
+                            'email'=>$this->email,
+                            'rol'=>$this->rol,
+                            'status'=>$this->status,
+                            'token'=>$this->token]);
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+        
         //$query->closeCursor();
     }
 

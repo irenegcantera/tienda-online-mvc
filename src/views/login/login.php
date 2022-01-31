@@ -15,9 +15,11 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
     <div id='login'>
         <form action='<?php Configuration::$PATH_LOCALHOST.'index.php' ?>' method='POST'>
             <fieldset>
-                <div>
-                    <span class='error'><?php if(isset($this->info)) echo $this->info['mensaje']; ?></span>
-                </div>    
+                <?php
+                if(isset($this->data['mensaje'])){
+                    echo "<div class='mensaje'>".$this->data['mensaje']."</div>";
+                }
+                ?>
                 <legend>Login</legend>
                 <div class='campo'>
                     <label for='usuario'>Usuario:</label><br>
