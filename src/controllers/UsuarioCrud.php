@@ -26,11 +26,6 @@ class UsuarioCrud extends Controller {
     public function listar(){
         $this->render("views/usuarios/listar", Usuario::getUsuarios());
     }
-
-    //getusuario
-    // public function listar(){
-    //     $this->render("views/usuarios/login", Usuario::getUsuario(usuario, contraseña));
-    // }
     
     public function eliminar(){
         $this->usuario = new Usuario($this->get('user'), "", "", "", 0);
