@@ -125,19 +125,4 @@
 //     disconnection($sql,$row,$db);
 // }
 
-// /* Función que obtiene el directorio en el que se ejecuta crear.php */
-// function obtainDirectory(){
-//     $dirArray = explode("/", $_SERVER['PHP_SELF']);
-//     foreach($dirArray as $dir){
-//         if($dir == "productos"){
-//             return "productos";
-//         }else if($dir == "familias"){
-//             return "familias";
-//         }else if($dir == "tiendas"){
-//             return "tiendas";
-//         }else if($dir == "usuarios"){
-//             return "usuarios";
-//         }
-//     }
-// }
 ?>

@@ -22,6 +22,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
                     echo "<div class='error'>".$this->data['error']."</div>";
                 }
                 ?>
+                <br><br>
                 <legend>Registro de usuario</legend>
                 <div class='campo'>
                     <label for='nombre'>Nombre:</label><br>

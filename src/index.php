@@ -45,6 +45,9 @@ if (isset($_REQUEST['op'])) {
         case 'Registrar':
             $controlLogin -> registrar();
             break;
+        // case 'activacion': 
+        //     $controlLogin -> activar();
+        //     break;
         case 'Cerrar':
             $controlLogin -> salir();
             break;     

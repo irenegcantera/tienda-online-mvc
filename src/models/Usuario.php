@@ -2,6 +2,7 @@
 
 namespace Irene\TiendaOnlineMvc\models;
 
+use Irene\TiendaOnlineMvc\conf\Configuration;
 use Irene\TiendaOnlineMvc\libs\Model;
 use PDO;
 
@@ -39,11 +40,9 @@ class Usuario extends Model {
         }catch(Exception $e){
             return false;
         }
-        
-        //$query->closeCursor();
     }
 
-    // Solo va a actualizar el estado y el rol de usuario
+    // Solo va a actualizar el email, el estado y el rol de usuario
     /* Función que actualiza datos del usuario de la base de datos */
     function update(){ 
         $query = $this -> prepare("UPDATE usuario SET email=:email, rol =:rol,status=:status WHERE nombre =:nombre");
@@ -51,14 +50,12 @@ class Usuario extends Model {
                         'email'=>$this->email,
                         'rol'=>$this->rol,
                         'status'=>$this->status]);
-        $query->closeCursor();
     }
 
     /* Función que borra un usuario */
     function delete(){
         $query =  $this -> prepare("DELETE FROM usuario WHERE nombre=:nombre");
         $query->execute(['nombre'=>$this->nombre]);
-        $query->closeCursor();
     }
 
     // funcion verificar usuario datos
@@ -75,8 +72,6 @@ class Usuario extends Model {
         return ($datos['rol'] == "Administrador")?true:false;
     }
 
-    // funcion verificar el estado del usuario
-
     public function generaPassword($password){
         return md5($password);
      }
@@ -84,6 +79,30 @@ class Usuario extends Model {
     public function generaToken(){
        return md5(($this -> email).time());
     }
+
+    // function sendActivacion($email,$token){
+    //     $to = $email;
+    //     $subject = "Validación de registro";
+    //     $mensaje = "<p>¡BIENVENIDO/A!</p>
+    //                 <p>Gracias por registrate en nuestra tienda online.</p><br>
+    //                 <p>Solo falta un último paso para recibir un descuento del 10% en todos nuestros productos.</p>
+    //                 <p>Confirma el registro en el siguiente enlace: </p><br>
+    //                 <a href='".Configuration::$PATH_LOCALHOST."index.php?op=activacion&token=$token'>Activar cuenta</a>";
+    //     $cabeceras = 'MIME-Version: 1.0'."\r\n";
+    //     $cabeceras .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
+    //     $enviado = mail($to,$subject,$mensaje,$cabeceras);
+    //     return $enviado; // devuelve un boolean
+    // }
+
+    // function checkToken($token,$status){
+    //     $sql = "SELECT * FROM usuario WHERE token = '$token' AND status = $status";
+    // }
+
+    // function changeStatusUser($token){
+    //     $query = $this -> prepare("UPDATE usuario SET status =:status WHERE token =:token");
+    //     $query->execute(['status'=>$this->status,
+    //                     'token' =>$token]);
+    // }
 
     // Obtener los usuarios de la base de datos
     public static function getUsuarios(){

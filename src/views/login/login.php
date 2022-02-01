@@ -18,10 +18,11 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
                 <?php
                 if(isset($this->data['mensaje'])){
                     echo "<div class='mensaje'>".$this->data['mensaje']."</div>";
-                }else{
+                }else if(isset($this->data['error'])){
                     echo "<div class='error'>".$this->data['error']."</div>";
                 }
                 ?>
+                <br>
                 <legend>Login</legend>
                 <div class='campo'>
                     <label for='usuario'>Usuario:</label><br>

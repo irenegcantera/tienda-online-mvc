@@ -72,12 +72,15 @@ class LoginController extends Controller {
                     $nuevoUsuario = new Usuario($usuario,$password,$email,$rol,$status);
                     if($nuevoUsuario->add()){
                         $info = ["mensaje" => "Usuario registrado correctamente."];
+                        // $token = $nuevoUsuario->token;
+                        // echo $token;
+                        // if($nuevoUsuario->sendActivacion($email,$token)){ // enviar email
+                        //     $info = ["mensaje" => "Usuario registrado correctamente! Activa la cuenta a través del correo electrónico que se le ha enviado."];
+                        // }else{
+                        //     $info = ["error" => "No se ha podido enviar el correo con la activación del ususario. Inténtelo más tarde."];
+                            
+                        // }
                     }
-                    // if(sendActivacion($email,$token)){ // enviar email
-                    //     $error = "Mensaje enviado correctamente, revise la carpeta spam.";
-                    // }else{
-                    //     $error = "No se ha podido enviar el correo con la activación del ususario.";
-                    // }
                 }else{
                     $info = ["error" => "Las contraseñas deben coincidir."];
                 }
@@ -95,6 +98,10 @@ class LoginController extends Controller {
         }
         
     }
+
+    // public function activar(){
+    //     // cambiar estado usuario
+    // }
 
     public static function comprobarSesion(){
         return (isset($_SESSION['usuario']))?true:false;
