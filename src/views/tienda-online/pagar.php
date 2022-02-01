@@ -14,7 +14,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
     <h2>¡Ha finalizado la compra con éxito!</h2>
     <form id='volver' action='<?php Configuration::$PATH_LOCALHOST.'index.php'?>' method='post'>
         <h3>¿Deseas recibir la factura al correo electrónico?</h3>   
-        <input type='submit' name='op' value='Enviar factura'/> 
+        <input type='submit' name='op' value='Enviar factura' disabled/> 
         <h3>Si quiere seguir comprando, pulse el siguiente botón para volver a la tienda.</h3>
         <input type='submit' name='op' value='Volver a la tienda'/>
         

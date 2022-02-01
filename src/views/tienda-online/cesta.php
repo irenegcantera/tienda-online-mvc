@@ -22,7 +22,7 @@ use Irene\TiendaOnlineMvc\conf\Configuration;
         echo "<tr><th>Código</th><th>Producto</th><th>Cantidad</th><th>Precio unidad</th><th>Precio total</th></tr>";
         foreach($this->data['cesta']->getProductosCesta() as $producto) {
             echo "<tr><td><p>$producto->codigo</p></td>";
-            echo "<td>".$producto->nombre."</td>";
+            echo "<td>".$producto->nombre_corto."</td>";
             echo "<td>".$producto->unidades."</td>";
             echo "<td>".$producto->pvp." €</td>";
             echo "<td>".$producto->unidades * $producto -> pvp." €</td></tr>";
