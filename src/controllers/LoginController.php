@@ -21,18 +21,26 @@ class LoginController extends Controller {
             $info = ["error" => "Los campos son obligatorios."];
         } else {
             $estadoUsuario = Usuario::checkUser($usuario,$password);
+            // $estadoUsuario = Usuario::checkUser($usuario,$password,$rol);
             if($estadoUsuario == ConfigurationStatus::$ACTIVO){
                 $_SESSION['usuario'] = $usuario;
+                // si lo hicieramos con pasar valor por referencia
+                // no hace falta la función chechUserAdmin
+                // if($rol == 'Administrador'){
+                //     // mostrar crud
+                // }else{
+                //     // mostrar tienda
+                // }
                 $rolUsuario = Usuario::checkUserAdmin($usuario,$password);
+                $tienda = new TiendaOnlineController;
                 if($rolUsuario){
-                    $user = new UsuarioCrud;
-                    $user->inicio();
-                    return;
+                    // $user = new UsuarioCrud;
+                    // $user->inicio();
+                    $tienda->showBackend();
                 }else{
-                    $tienda = new TiendaOnlineController;
                     $tienda->showTiendaOnline();
-                    return;
-                }    
+                }
+                return;    
             }else{
                 switch ($estadoUsuario) {
                     case 0:

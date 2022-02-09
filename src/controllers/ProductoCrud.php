@@ -6,7 +6,7 @@ use Irene\TiendaOnlineMvc\libs\Controller;
 use Irene\TiendaOnlineMvc\models\Producto;
 
 //interface Crud
-class ProductoCrud extends Controller {
+class ProductoCrud extends Controller implements Crud {
     
     private Producto $producto;
 
@@ -25,7 +25,13 @@ class ProductoCrud extends Controller {
     }
 
     public function listar(){
-        $this->render("views/productos/listar", Producto::getProductos());
+        /* 
+        $productos[] = Producto::getProductos();
+        for cada webservice {
+                $prod = getProductos;
+                $productos[] = new Producto....;
+        }*/
+	$this->render("views/productos/listar", Producto::getProductos());
     }
 
     public function eliminar(){

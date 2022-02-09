@@ -5,7 +5,7 @@ namespace Irene\TiendaOnlineMvc\controllers;
 use Irene\TiendaOnlineMvc\libs\Controller;
 use Irene\TiendaOnlineMvc\models\Usuario;
 
-class UsuarioCrud extends Controller {
+class UsuarioCrud extends Controller implements Crud {
     
     private Usuario $usuario;
 

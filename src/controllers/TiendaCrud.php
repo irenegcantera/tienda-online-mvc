@@ -5,7 +5,7 @@ namespace Irene\TiendaOnlineMvc\controllers;
 use Irene\TiendaOnlineMvc\libs\Controller;
 use Irene\TiendaOnlineMvc\models\Tienda;
 
-class TiendaCrud extends Controller {
+class TiendaCrud extends Controller implements Crud {
     
     private Tienda $tienda;
 
